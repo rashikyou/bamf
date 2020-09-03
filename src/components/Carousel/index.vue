@@ -1,8 +1,18 @@
 <template>
   <section class="carousel" @scroll="handleScroll">
-    <div class="carousel-item" v-for="image in src" v-bind:key="image[0]">
+    <div  class="carousel-item"
+          :class="{
+            width100 : classname == 'full_height', 
+            height100: classname == 'width_height'
+          }" v-for="image in src" v-bind:key="image[0]">
       <img :src="image[2]" :alt="image[1]" :index="image[0]"
-           :class="{active: index == image[0],toRight: index < image[0], toLeft: index > image[0]}"
+           :class="{
+              active : index == image[0],
+              toRight: index  < image[0], 
+              toLeft : index  > image[0], 
+              full_height: classname == 'full_height',
+              full_width : classname == 'full_width'
+            }"
       />
     </div>
   </section>
@@ -10,7 +20,7 @@
 
 <script>
 export default {
-  props: ['src','index'],
+  props: ['src','index', 'classname'],
   data() {
     return {
       scrolling: -1

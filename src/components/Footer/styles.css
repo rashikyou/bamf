@@ -3,12 +3,13 @@
 footer {
   align-items: stretch;
   background: var(--grey-dark);
-  bottom: 0;
   position: absolute;
-  width: 100vw;
   z-index: 1000;
   transition: .3s all ease-in-out;
+
+  bottom: 0;
   height: 1vh;
+  width: 100vw;
 
   &:before {
     background: var(--grey-dark);
@@ -20,11 +21,13 @@ footer {
     font-size: 2rem;
     line-height: 2rem;
     font-weight: 800;
-    left: 50%;
     padding: 0 0.5rem 0.2rem;
     position: absolute;
-    top: -2rem;
     transform: translateX(-50%);
+
+    
+    top: -2rem;
+    left: 1%;
   }
 
   &:hover,

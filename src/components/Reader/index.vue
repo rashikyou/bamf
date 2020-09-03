@@ -1,6 +1,7 @@
 <template>
-<div class="reader" :class="{'adapt': width}">
-  <carousel :src="src" :index="index" @scrolled="setIndex"></carousel>
+<!--div class="reader" :class="{'adapt': width}"-->
+<div class="reader">
+  <carousel :src="src" :index="index" @scrolled="setIndex" :classname="classname"></carousel>
   <footer-element :src="src" @clicked="setIndex" :index="index"></footer-element>
   <toaster :message="toaster_message" :time="toaster_time"></toaster>
 </div>
@@ -13,7 +14,7 @@ import Toast from '@/components/Toast';
 import { listen } from '@/functions/listen';
 
 export default {
-  props: ['src'],
+  props: ['src', 'classname'],
   data() {
     return {
       index: 0,

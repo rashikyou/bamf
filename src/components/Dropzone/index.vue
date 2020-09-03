@@ -1,8 +1,37 @@
 <template>
-  <div id="dropzone" @drop.prevent="onDrop" @dragenter="onDragEnter" @dragover="onDragOver" @dragleave="onDragLeave" :class="{active: dragging == true}">
-    <image-elem v-if="src" :src="src" />
-    <input type="file" v-if="!dropped" id="file"  name="file" @change="onDrop" />
-    <label for="file" v-if="!dropped">To open a comic book file,<br>click anywere on the page,<br>or drop it anywere on the page.</label>
+  <div>
+    <div id="header">
+      <div id="panel">
+        <!--label style="display:inline-block">Percent</label-->
+        <!--input style="display:inline-block;width:50px;margin-top:5px" type="text" value="100"/-->
+        
+        <input style="display:inline-block;width:50px;margin-top:10px" 
+                type="radio" 
+                value="full_width" 
+                id="full_width"
+                name="view_size"
+                v-on:change="onRadioChange"
+                :checked="classname == 'full_width'"
+                />
+        <label style="display:inline-block" for="full_width">Full width</label>
+                
+        <input style="display:inline-block;width:50px;margin-top:10px" 
+                type="radio" 
+                value="full_height" 
+                id="full_width"
+                name="view_size"
+                v-on:change="onRadioChange"
+                :checked="classname == 'full_height'"
+                />               
+        <label style="display:inline-block" for="full_height">Full Height</label>
+
+      </div>
+    </div>
+    <div id="dropzone" @drop.prevent="onDrop" @dragenter="onDragEnter" @dragover="onDragOver" @dragleave="onDragLeave" :class="{active: dragging == true}">
+      <image-elem v-if="src" :src="src" :classname="classname"/>
+      <input type="file" v-if="!dropped" id="file"  name="file" @change="onDrop" />
+      <label id='msg' for="file" v-if="!dropped">To open a comic book file,<br>click anywere on the page,<br>or drop it anywere on the page.</label>
+    </div>
   </div>
 </template>
 <script>
@@ -18,7 +47,9 @@ export default {
     return {
       dropped: false,
       dragging: false,
-      src: ''
+      src: '',
+      classname:'full_height'
+      // classname:'full_width'
     }
   },
   components: {
@@ -64,6 +95,10 @@ export default {
     },
     onDragOver(e) {
       e.preventDefault();
+    },
+    onRadioChange(e){
+      console.log(e.target.value);
+      this.classname = e.target.value;
     }
   },
 };

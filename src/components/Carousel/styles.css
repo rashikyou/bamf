@@ -1,10 +1,10 @@
 section {
-  height: 100%;
+  /*height: 100%;*/
   overflow: hidden;
 
   & img {
     width: 100vw;
-    max-width: 980px;
+    /*max-width: 980px;*/
     transition: 0.2s all ease-in-out;
   }
 }
@@ -18,15 +18,35 @@ section {
 }
 
 .carousel-item {
-  width: 100vw;
+  /*width: 100vw;*/
+  /*height: 100%;*/
+  /*overflow-y: auto;*/
   flex-shrink: 0;
-  height: 100%;
-  overflow-y: auto;
   text-align: center;
 }
 
+/*
 .adapt img {
   max-width: 100%;
   height: 100%;
   width: auto;
+}
+*/
+
+.full_height {
+    width : auto;
+    height: 100vh;
+}
+
+.full_width {
+    width : 100vw;
+    height: auto;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.height100 {
+  height: 100vh;
 }

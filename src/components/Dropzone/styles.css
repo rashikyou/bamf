@@ -1,5 +1,52 @@
 @import "variables";
 
+#header {
+  align-items: stretch;
+  background: var(--grey-dark);
+  position: absolute;
+  z-index: 1000;
+  transition: .3s all ease-in-out;
+
+  top: -50px;
+  height: 0vh;
+  width: 100vw;
+
+  &:before {
+    background: var(--grey-dark);
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    color: var(--light);
+    cursor: pointer;
+    content: '\25be';
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 800;
+    padding: 0 0.5rem 0.2rem;
+    position: absolute;
+    transform: translateX(-50%);
+
+    z-index: 2000;
+    height: 30px;
+    top: 50px;
+    left: 1%;
+  }
+
+  &:hover{
+    height: 55px;
+    top: 0px;
+  }
+}
+
+#panel {
+  position    : absolute;
+  margin-left : 50px;
+  padding-left: 25px;
+  background-color: var(--white);
+  width       : 90vw;
+  height      : 45px;
+  bottom      : 5px;
+}
+
 #dropzone {
   width: 100vw;
   height: 100vh;
@@ -13,7 +60,7 @@
   }
 }
 
-input {
+input#file {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -25,7 +72,7 @@ input {
   cursor: pointer;
 }
 
-label {
+label#msg {
   color: var(--light);
   cursor: pointer;
   font-size: 2em;
