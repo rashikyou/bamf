@@ -1,5 +1,5 @@
 <template lang="html">
-  <footer :class="{open: src}">
+  <div id="footer" :class="{open: src}">
     <nav>
       <li v-for="image in src" v-bind:key="image[0]" @click="onclick" @onTap="onclick">
         <a :href="image[2]" :index="image[0]" :style="{'background-image': `url(${image[2]})`}" :alt="image[1]" :class="{active: index == image[0]}">
@@ -7,7 +7,7 @@
         </a>
       </li>
     </nav>
-  </footer>
+  </div>
 </template>
 
 <script>

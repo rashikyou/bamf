@@ -11,6 +11,7 @@ section {
 
 .carousel {
   display: flex;
+  /*display: block;*/
   overflow: auto hidden;
   height: 100vh;
   width: inherit;
@@ -35,7 +36,7 @@ section {
 
 .full_height {
     width : auto;
-    height: 100vh;
+    height: 98vh;
 }
 
 .full_width {
@@ -49,4 +50,22 @@ section {
 
 .height100 {
   height: 100vh;
+}
+
+.overflow_y {
+  overflow-y: scroll; 
+  scrollbar-width: none;
+}
+
+.overflow_x {
+  overflow-x: scroll; 
+  scrollbar-width: none;
+}
+
+.overflow_y::-webkit-scrollbar  {
+  scrollbar-width: none;
+}
+
+.overflow_x::-webkit-scrollbar {
+  display: none;
 }

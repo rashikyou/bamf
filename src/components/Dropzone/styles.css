@@ -5,7 +5,7 @@
   background: var(--grey-dark);
   position: absolute;
   z-index: 1000;
-  transition: .3s all ease-in-out;
+  /*transition: .3s all ease-in-out;*/
 
   top: -50px;
   height: 0vh;

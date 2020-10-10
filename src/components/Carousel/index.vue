@@ -1,9 +1,12 @@
 <template>
-  <section class="carousel" @scroll="handleScroll">
+  <section  class="carousel" 
+            @scroll="handleScroll">
     <div  class="carousel-item"
           :class="{
-            width100 : classname == 'full_height', 
-            height100: classname == 'width_height'
+            width100  : classname == 'full_height', 
+            height100 : classname == 'full_width',
+            overflow_x: classname == 'full_height', 
+            overflow_y: classname == 'full_width'
           }" v-for="image in src" v-bind:key="image[0]">
       <img :src="image[2]" :alt="image[1]" :index="image[0]"
            :class="{
@@ -29,7 +32,8 @@ export default {
   watch: {
     index: (n,o) => {
       let el = document.querySelector('[index="'+n+'"]').parentElement;
-      el.scrollIntoView({ behavior: "smooth" });
+      // el.scrollIntoView({ behavior: "smooth" });
+      el.scrollIntoView();
     }
   },
   methods: {
@@ -49,20 +53,24 @@ export default {
          * Check which sibling is visible
          * @type {Array}
          */
-        let visible = [...el.parentElement.querySelectorAll(el.nodeName)].find(sib => {
-          return sib.getBoundingClientRect().left >= 0;
-        });
+        try{
+          let visible = [...el.parentElement.querySelectorAll(el.nodeName)].find(sib => {
+            return sib.getBoundingClientRect().left >= 0;
+          });
 
-        let elPosX = visible.getBoundingClientRect().x;
-        let prevPosX = visible.previousSibling.getBoundingClientRect().x;
+          let elPosX = visible.getBoundingClientRect().x;
+          let prevPosX = visible.previousSibling.getBoundingClientRect().x;
 
-        if (elPosX > 0 && elPosX <= window.innerWidth/2) {
-          visible.scrollIntoView({ behavior: "smooth" });
-          this.$emit('scrolled', visible.querySelector('img'));
-        } else if (prevPosX < 0 && prevPosX > -window.innerWidth/2) {
-          let prevEl = visible.previousSibling;
-          prevEl.scrollIntoView({ behavior: "smooth" });
-          this.$emit('scrolled', prevEl.querySelector('img'));
+          if (elPosX > 0 && elPosX <= window.innerWidth/2) {
+            visible.scrollIntoView({ behavior: "smooth" });
+            this.$emit('scrolled', visible.querySelector('img'));
+          } else if (prevPosX < 0 && prevPosX > -window.innerWidth/2) {
+            let prevEl = visible.previousSibling;
+            prevEl.scrollIntoView({ behavior: "smooth" });
+            this.$emit('scrolled', prevEl.querySelector('img'));
+          }
+        }catch(e){
+          console.log(e.message);
         }
       }, 200);
     },

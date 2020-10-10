@@ -1,6 +1,6 @@
 @import 'variables.css';
 
-footer {
+div#footer {
   align-items: stretch;
   background: var(--grey-dark);
   position: absolute;
@@ -8,7 +8,7 @@ footer {
   transition: .3s all ease-in-out;
 
   bottom: 0;
-  height: 1vh;
+  /*height: 1vh;*/
   width: 100vw;
 
   &:before {
@@ -76,6 +76,7 @@ span {
   color: white;
   position: absolute;
   padding: 5px;
+  padding-top: 40px;
   background-color: rgba(0,0,0,.7);
   transform: translate(-50%, -50%);
   top: 50%;
