@@ -15,3 +15,8 @@
 !src/**/*
 !docs/**/*
 !tests/**/*
+docs/app.js
+docs/index.html
+docs/style.css
+docs/vendors~app.js
+docs/vendors~unrar.js
