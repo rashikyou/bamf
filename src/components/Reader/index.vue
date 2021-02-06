@@ -3,7 +3,7 @@
 <div class="reader">
   <carousel :src="src" :index="index" @scrolled="setIndex" :classname="classname"></carousel>
   <footer-element :src="src" @clicked="setIndex" :index="index"></footer-element>
-  <toaster :message="toaster_message" :time="toaster_time"></toaster>
+  <toaster :message="toasterMessage" :time="toasterTime"></toaster>
 </div>
 </template>
 <script>
@@ -19,8 +19,8 @@ export default {
     return {
       index: 0,
       width: false,
-      toaster_message: '',
-      toaster_time: 0,
+      toasterMessage: '',
+      toasterTime: 0,
     }
   },
   components: {
@@ -39,8 +39,8 @@ export default {
       this.index = this.index--;
     },
     popup(message, time) {
-      this.toaster_message = message;
-      this.toaster_time = time;
+      this.toasterMessage = message;
+      this.toasterTime = time;
     }
   },
   mounted() {
@@ -54,7 +54,7 @@ export default {
 
       if (e.keyCode == 188 && e.shiftKey) {
         this.popup(`<p>Testing</p>`,3000);
-        console.log(this.toaster_message,this.toaster_time);
+        console.log(this.toasterMessage,this.toasterTime);
       }
 
       this.index = Math.max(0, parseInt(this.index) + delta);
@@ -63,4 +63,4 @@ export default {
 };
 </script>
 
-<style src="./styles"></style>
+<style src="./styles.css"></style>

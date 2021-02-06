@@ -57,12 +57,12 @@ export default {
   },
   methods: {
     onDrop(e) {
-      let droppedFiles = [];
-      let that = this;
-      let files = (typeof e.dataTransfer !== 'undefined') ? e.dataTransfer.files : e.target.files;
+      const droppedFiles = [];
+      // const that = this;
+      const files = (typeof e.dataTransfer !== 'undefined') ? e.dataTransfer.files : e.target.files;
 
 
-      for (var f = 0; f < files.length; f++) {
+      for (let f = 0; f < files.length; f++) {
         droppedFiles.push(files[f]);
       }
 
@@ -70,10 +70,11 @@ export default {
       if (sync.get('dropZone') === null) {
         sync.set('dropZone', droppedFiles);
       } else {
-        let prevFiles = sync.get('dropZone');
+        const prevFiles = sync.get('dropZone');
         droppedFiles.forEach(file => {
           loader.read(file, (evt) => {
-            that.src = evt;
+            // that.src = evt;
+            this.src = evt;
           })
         })
       }
@@ -103,4 +104,4 @@ export default {
   },
 };
 </script>
-<style scoped src="./styles"></style>
+<style scoped src="./styles.css"></style>
