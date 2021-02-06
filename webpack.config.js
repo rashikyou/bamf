@@ -38,7 +38,7 @@ module.exports = (env, argv) => {
       chunkFilename: '[name].js',
     },
     resolve: {
-      extensions: ['.js', '.vue', '.json', '.css'],
+      extensions: ['.js', '.vue', '.json', '.css', '.scss'],
       alias: {
         '@': path.join(__dirname, 'src'),
         vue: argv.mode === 'development' ? 'vue/dist/vue.esm.js' : 'vue/dist/vue.runtime.esm.js',
@@ -67,7 +67,7 @@ module.exports = (env, argv) => {
           ]
         },
         {
-          test: /\.css/,
+          test: /\.(css|scss)/,
           loader: [
             argv.mode === 'development'
               ? 'vue-style-loader'

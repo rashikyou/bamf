@@ -78,4 +78,4 @@ export default {
 }
 </script>
 
-<style scoped src="./styles.css"></style>
+<style scoped src="./styles.scss" lang="scss"></style>

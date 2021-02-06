@@ -25,4 +25,4 @@ export default {
 };
 </script>
 
-<style scoped src="./index.css"></style>
+<style scoped src="./index.scss" lang="scss"></style>
