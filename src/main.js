@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from '@/App';
 import router from '@/router';
-import '@/css/master.scss';
+import '@/assets/master.scss';
 
 // Vue.config.productionTip = false;
 // Vue.config.devtools = true;

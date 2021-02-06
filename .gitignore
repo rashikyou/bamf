@@ -2,7 +2,7 @@
 !.gitignore
 !package.json
 !LICENSE
-!webpack.config.js
+# !webpack.config.js
 !index.html
 !logo-bamf.png
 !logo-bamf.svg
@@ -20,3 +20,4 @@ docs/index.html
 docs/style.css
 docs/vendors~app.js
 docs/vendors~unrar.js
+docs/vendors~jszip.js
