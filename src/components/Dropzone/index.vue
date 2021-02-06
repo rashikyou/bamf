@@ -58,7 +58,6 @@ export default {
   methods: {
     onDrop(e) {
       const droppedFiles = [];
-      // const that = this;
       const files = (typeof e.dataTransfer !== 'undefined') ? e.dataTransfer.files : e.target.files;
 
 
@@ -73,7 +72,6 @@ export default {
         const prevFiles = sync.get('dropZone');
         droppedFiles.forEach(file => {
           loader.read(file, (evt) => {
-            // that.src = evt;
             this.src = evt;
           })
         })
