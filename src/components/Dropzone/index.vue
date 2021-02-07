@@ -86,9 +86,7 @@ export default {
         sync.set("dropZone", droppedFiles);
       } else {
         // const prevFiles = sync.get("dropZone");
-        // eslint-disable-next-line
         droppedFiles.forEach((file) => {
-          // eslint-disable-next-line
           loader.read(file, (evt) => {
             this.src = evt;
           });

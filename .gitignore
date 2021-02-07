@@ -1,23 +1,24 @@
-*
-!.gitignore
-!package.json
-!LICENSE
-# !webpack.config.js
-!index.html
-!logo-bamf.png
-!logo-bamf.svg
-!README.md
-!.gitlab-ci.yml
-!src
-!docs
-!dist
-!tests
-!src/**/*
-!docs/**/*
-!tests/**/*
-docs/app.js
-docs/index.html
-docs/style.css
-docs/vendors~app.js
-docs/vendors~unrar.js
-docs/vendors~jszip.js
+.DS_Store
+node_modules
+/dist
+
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+package-lock.json

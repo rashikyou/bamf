@@ -63,7 +63,6 @@ export default {
         try {
           const visible = [
             ...el.parentElement.querySelectorAll(el.nodeName)
-            // eslint-disable-next-line
           ].find((sib) => {
             return sib.getBoundingClientRect().left >= 0;
           });

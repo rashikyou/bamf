@@ -50,7 +50,6 @@ export default {
     }
   },
   mounted() {
-    // eslint-disable-next-line
     listen(window, "keyup", (e) => {
       let delta = 0;
       switch (e.keyCode) {
