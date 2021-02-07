@@ -18,7 +18,6 @@ export default class Sync {
     this.storage.setItem(itemName, storageItem);
   }
 
-
   update(itemName, data) {
     const oldItem = this.get(itemName);
     const storageItem = this._isJSON(oldItem) ? [...oldItem, data] : data;
@@ -28,7 +27,7 @@ export default class Sync {
   _isJSON(str) {
     try {
       const json = JSON.parse(str);
-      if (Object.prototype.toString.call(json).slice(8, -1) !== 'Object') {
+      if (Object.prototype.toString.call(json).slice(8, -1) !== "Object") {
         return false;
       }
     } catch (e) {

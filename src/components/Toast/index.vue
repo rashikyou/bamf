@@ -3,24 +3,22 @@
     <a href="#" class="close" @click="close">
       <span>Close</span>
     </a>
-    <div class="message" v-html="message">
-
-    </div>
+    <div class="message" v-html="message"></div>
   </div>
 </template>
 <script>
 export default {
-  props: ['message', 'time'],
+  props: ["message", "time"],
   data() {
     return {
-      active: false,
-    }
+      active: false
+    };
   },
   mounted: function() {
     setTimeout(() => {
       this.active = false;
     }),
-    this.time
+      this.time;
   }
 };
 </script>

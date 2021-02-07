@@ -1,8 +1,19 @@
 <template lang="html">
-  <div id="footer" :class="{open: src}">
+  <div id="footer" :class="{ open: src }">
     <nav>
-      <li v-for="image in src" v-bind:key="image[0]" @click="onclick" @onTap="onclick">
-        <a :href="image[2]" :index="image[0]" :style="{'background-image': `url(${image[2]})`}" :alt="image[1]" :class="{active: index == image[0]}">
+      <li
+        v-for="image in src"
+        v-bind:key="image[0]"
+        @click="onclick"
+        @onTap="onclick"
+      >
+        <a
+          :href="image[2]"
+          :index="image[0]"
+          :style="{ 'background-image': `url(${image[2]})` }"
+          :alt="image[1]"
+          :class="{ active: index == image[0] }"
+        >
           <span>{{ image[0] }}</span>
         </a>
       </li>
@@ -12,10 +23,10 @@
 
 <script>
 export default {
-  props: ['src','index'],
+  props: ["src", "index"],
   methods: {
     onclick(event) {
-      this.$emit('clicked', event.target);
+      this.$emit("clicked", event.target);
       event.preventDefault();
     }
   }

@@ -75,11 +75,8 @@ export default {
   methods: {
     onDrop(e) {
       const droppedFiles = [];
-      const files = (
-        ( typeof e.dataTransfer !== "undefined" )
-        ? e.dataTransfer.files
-        : e.target.files
-      );
+      const tdt = typeof e.dataTransfer !== "undefined";
+      const files = tdt ? e.dataTransfer.files : e.target.files;
 
       for (let f = 0; f < files.length; f++) {
         droppedFiles.push(files[f]);
@@ -88,8 +85,10 @@ export default {
       if (sync.get("dropZone") === null) {
         sync.set("dropZone", droppedFiles);
       } else {
-        const prevFiles = sync.get("dropZone");
-        droppedFiles.forEach(file => {
+        // const prevFiles = sync.get("dropZone");
+        // eslint-disable-next-line
+        droppedFiles.forEach((file) => {
+          // eslint-disable-next-line
           loader.read(file, (evt) => {
             this.src = evt;
           });
