@@ -1,10 +1,11 @@
 export default class Sync {
-  constructor() {
+  storage: Storage;
+  constructor () {
     this.storage = window.localStorage;
   }
 
-  get(item) {
-    const storageItem = this.storage.getItem(item);
+  get (item: string) {
+    const storageItem: any = this.storage.getItem(item);
 
     if (this._isJSON(storageItem)) {
       return JSON.parse(storageItem);
@@ -13,18 +14,18 @@ export default class Sync {
     }
   }
 
-  set(itemName, item) {
+  set (itemName: string, item: string) {
     const storageItem = this._isJSON(item) ? JSON.stringify([item]) : item;
     this.storage.setItem(itemName, storageItem);
   }
 
-  update(itemName, data) {
+  update (itemName: string, data: any) {
     const oldItem = this.get(itemName);
     const storageItem = this._isJSON(oldItem) ? [...oldItem, data] : data;
     this.set(itemName, storageItem);
   }
 
-  _isJSON(str) {
+  _isJSON (str: string): boolean|void {
     try {
       const json = JSON.parse(str);
       if (Object.prototype.toString.call(json).slice(8, -1) !== "Object") {
@@ -33,6 +34,5 @@ export default class Sync {
     } catch (e) {
       return false;
     }
-    return;
   }
 }

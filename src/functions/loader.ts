@@ -7,8 +7,6 @@ interface FileUnit{
 export default class Loader {
   reader: FileReader;
 
-  // eslint-disable-next-line
-
   constructor () {
     this.reader = new FileReader();
   }

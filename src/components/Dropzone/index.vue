@@ -54,10 +54,10 @@
 </template>
 <script>
 import Loader from "@/functions/loader";
-import Sync from "@/functions/sync";
+// import Sync from "@/functions/sync";
 import Reader from "@/components/Reader";
 const loader = new Loader();
-const sync = new Sync();
+// const sync = new Sync();
 
 export default {
   data () {
@@ -82,6 +82,7 @@ export default {
         droppedFiles.push(files[f]);
       }
 
+      /*
       if (sync.get("dropZone") === null) {
         sync.set("dropZone", droppedFiles);
       } else {
@@ -92,6 +93,13 @@ export default {
           });
         });
       }
+      */
+
+      droppedFiles.forEach((file) => {
+        loader.read(file, (evt) => {
+          this.src = evt;
+        });
+      });
 
       e.preventDefault();
       this.dragging = false;
