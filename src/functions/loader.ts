@@ -1,7 +1,13 @@
-type TFN = {(evt: ((number|string)[])[]): void}
-interface FileUnit{
+type TFN = {(evt: SrcResult[]): void}
+interface FileUnit {
   filename: string;
   fileData: Uint8Array;
+}
+
+interface SrcResult {
+  0: number;// idex
+  1: string;// filename
+  2: string;// filedata
 }
 
 export default class Loader {
@@ -61,7 +67,7 @@ export default class Loader {
             })
             .map(function (fileName, index) {
               const file = zip.files[fileName];
-              return file.async("blob").then(function (blob) {
+              return file.async("blob").then(function (blob): SrcResult {
                 return [
                   index,
                   fileName, // keep the link between the file name and the content
@@ -73,7 +79,7 @@ export default class Loader {
           // into a promise of arrays
           return Promise.all(promises);
         })
-        .then((result) => {
+        .then((result: SrcResult[]) => {
           return fn(result);
         });
     });
@@ -84,11 +90,11 @@ export default class Loader {
     import(/* webpackChunkName: "unrar" */ "unrar-js/lib/Unrar" as any).then((unrar) => {
       try {
         const files: FileUnit[] = unrar.default(rarFile);
-        const result = files.map((file, index: number) => {
+        const result: SrcResult[] = files.map((file, index: number) => {
           return [
             index,
             file.filename,
-            URL.createObjectURL(new Blob([file.fileData], { type: "image/png" }))
+            URL.createObjectURL(new Blob([file.fileData], { type: "image/jpg" }))
           ];
         });
 

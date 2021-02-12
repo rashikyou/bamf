@@ -52,19 +52,26 @@
     </div>
   </div>
 </template>
-<script>
+<script lang='ts'>
+import { defineComponent } from 'vue';
 import Loader from "@/functions/loader";
 // import Sync from "@/functions/sync";
-import Reader from "@/components/Reader";
+import Reader from "@/components/Reader/index.vue";
 const loader = new Loader();
 // const sync = new Sync();
 
-export default {
+interface SrcResult {
+  0: number;
+  1: string;
+  2: string;
+}
+
+export default defineComponent({
   data () {
     return {
       dropped: false,
       dragging: false,
-      src: "",
+      src: [[0, '', '']] as SrcResult[],
       classname: "full_height"
       // classname:'full_width'
     };
@@ -73,7 +80,7 @@ export default {
     "image-elem": Reader
   },
   methods: {
-    onDrop (e) {
+    onDrop (e: Event & {dataTransfer: DataTransfer; target: {files: File[]}}) {
       const droppedFiles = [];
       const tdt = typeof e.dataTransfer !== "undefined";
       const files = tdt ? e.dataTransfer.files : e.target.files;
@@ -82,21 +89,19 @@ export default {
         droppedFiles.push(files[f]);
       }
 
-      /*
-      if (sync.get("dropZone") === null) {
-        sync.set("dropZone", droppedFiles);
-      } else {
-        // const prevFiles = sync.get("dropZone");
-        droppedFiles.forEach((file) => {
-          loader.read(file, (evt) => {
-            this.src = evt;
-          });
-        });
-      }
-      */
+      // if (sync.get("dropZone") === null) {
+      //   sync.set("dropZone", droppedFiles);
+      // } else {
+      //   // const prevFiles = sync.get("dropZone");
+      //   droppedFiles.forEach((file) => {
+      //     loader.read(file, (evt) => {
+      //       this.src = evt;
+      //     });
+      //   });
+      // }
 
-      droppedFiles.forEach((file) => {
-        loader.read(file, (evt) => {
+      droppedFiles.forEach((file: File) => {
+        loader.read(file, (evt: SrcResult[]) => {
           this.src = evt;
         });
       });
@@ -108,22 +113,21 @@ export default {
       // this.uploadedFiles.push(e.dataTransfer.files);
     },
 
-    onDragEnter (e) {
+    onDragEnter (e: DragEvent) {
       this.dragging = true;
       e.preventDefault();
     },
-    onDragLeave (e) {
+    onDragLeave (e: DragEvent) {
       e.preventDefault();
       this.dragging = false;
     },
-    onDragOver (e) {
+    onDragOver (e: DragEvent) {
       e.preventDefault();
     },
-    onRadioChange (e) {
-      console.log(e.target.value);
+    onRadioChange (e: {target: {value: string}}) {
       this.classname = e.target.value;
     }
   }
-};
+});
 </script>
 <style scoped src="./styles.scss" lang="scss"></style>
