@@ -13,15 +13,17 @@
     <toaster :message="toasterMessage" :time="toasterTime"></toaster>
   </div>
 </template>
-<script>
-import Footer from "@/components/Footer";
-import Carousel from "@/components/Carousel";
-import Toast from "@/components/Toast";
+<script lang='ts'>
+import Footer from "@/components/Footer/index.vue";
+import Carousel from "@/components/Carousel/index.vue";
+import Toast from "@/components/Toast/index.vue";
 import { listen } from "@/functions/listen";
 
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: ["src", "classname"],
-  data() {
+  data () {
     return {
       index: 0,
       width: false,
@@ -35,21 +37,21 @@ export default {
     toaster: Toast
   },
   methods: {
-    setIndex(el) {
-      this.index = el.getAttribute("index");
+    setIndex (el: HTMLElement) {
+      this.index = parseInt(el.getAttribute("index") ?? '0');
     },
-    plusIndex() {
+    plusIndex () {
       this.index = this.index++;
     },
-    minusIndex() {
+    minusIndex () {
       this.index = this.index--;
     },
-    popup(message, time) {
+    popup (message: string, time: number) {
       this.toasterMessage = message;
       this.toasterTime = time;
     }
   },
-  mounted() {
+  mounted () {
     listen(window, "keyup", (e) => {
       let delta = 0;
       switch (e.keyCode) {
@@ -64,15 +66,15 @@ export default {
           break;
       }
 
-      if (e.keyCode == 188 && e.shiftKey) {
+      if (e.keyCode === 188 && e.shiftKey) {
         this.popup(`<p>Testing</p>`, 3000);
         console.log(this.toasterMessage, this.toasterTime);
       }
 
-      this.index = Math.max(0, parseInt(this.index) + delta);
+      this.index = Math.max(0, this.index + delta);
     });
   }
-};
+});
 </script>
 
 <style src="./styles.scss" lang="scss"></style>
