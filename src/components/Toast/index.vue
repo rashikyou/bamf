@@ -6,21 +6,23 @@
     <div class="message" v-html="message"></div>
   </div>
 </template>
-<script>
-export default {
+<script lang='ts'>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: ["message", "time"],
-  data() {
+  data () {
     return {
       active: false
     };
   },
-  mounted: function() {
+  mounted: function () {
     setTimeout(() => {
       this.active = false;
-    }),
-      this.time;
+    });
+    // this.time;
   }
-};
+});
 </script>
 
-<style scoped src="./index.scss" lang="scss"></style>
+<style scoped src="./styles.scss" lang="scss"></style>

@@ -21,16 +21,18 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang='ts'>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: ["src", "index"],
   methods: {
-    onclick(event) {
+    onclick (event: Event) {
       this.$emit("clicked", event.target);
       event.preventDefault();
     }
   }
-};
+});
 </script>
 
 <style scoped src="./styles.scss" lang="scss"></style>
