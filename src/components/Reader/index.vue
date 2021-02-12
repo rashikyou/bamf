@@ -55,18 +55,18 @@ export default defineComponent({
     listen(window, "keyup", (e) => {
       let delta = 0;
       switch (e.keyCode) {
-        case 37:
+        case 37:// 37 = left arrow
           delta = -1;
           break;
-        case 39:
+        case 39:// 39 = right arrow
           delta = 1;
           break;
-        case 87:
+        case 87:// 87 = w
           this.width = !this.width;
           break;
       }
 
-      if (e.keyCode === 188 && e.shiftKey) {
+      if (e.keyCode === 188 && e.shiftKey) { // 188 = comma and <
         this.popup(`<p>Testing</p>`, 3000);
         console.log(this.toasterMessage, this.toasterTime);
       }
