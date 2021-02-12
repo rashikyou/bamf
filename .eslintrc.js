@@ -20,7 +20,8 @@ module.exports = {
       }
     ],
     "arrow-parens": [2, "always"],
-    "quotes": [0, "double"]
+    "quotes": [0, "double"],
+    "semi": [1, "always"]
   },
   overrides: [
     {

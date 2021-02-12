@@ -60,7 +60,7 @@ const loader = new Loader();
 const sync = new Sync();
 
 export default {
-  data() {
+  data () {
     return {
       dropped: false,
       dragging: false,
@@ -73,7 +73,7 @@ export default {
     "image-elem": Reader
   },
   methods: {
-    onDrop(e) {
+    onDrop (e) {
       const droppedFiles = [];
       const tdt = typeof e.dataTransfer !== "undefined";
       const files = tdt ? e.dataTransfer.files : e.target.files;
@@ -100,18 +100,18 @@ export default {
       // this.uploadedFiles.push(e.dataTransfer.files);
     },
 
-    onDragEnter(e) {
+    onDragEnter (e) {
       this.dragging = true;
       e.preventDefault();
     },
-    onDragLeave(e) {
+    onDragLeave (e) {
       e.preventDefault();
       this.dragging = false;
     },
-    onDragOver(e) {
+    onDragOver (e) {
       e.preventDefault();
     },
-    onRadioChange(e) {
+    onRadioChange (e) {
       console.log(e.target.value);
       this.classname = e.target.value;
     }
