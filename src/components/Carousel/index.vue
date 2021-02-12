@@ -27,19 +27,23 @@
   </section>
 </template>
 
-<script>
-export default {
+<script lang='ts'>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: ["src", "index", "classname"],
-  data() {
+  data () {
     return {
       scrolling: -1
     };
   },
   watch: {
-    index: function(n /*,o*/) {
-      const el = document.querySelector("[index='" + n + "']").parentElement;
+    index: function (n: number) {
+      const el = document?.querySelector("[index='" + n + "']")?.parentElement;
       // el.scrollIntoView({ behavior: "smooth" });
-      el.scrollIntoView();
+      if (el) {
+        el.scrollIntoView();
+      }
     }
   },
   methods: {
@@ -47,11 +51,11 @@ export default {
      * Scroll handler
      * @param  {Event} ev Scrolling event
      */
-    handleScroll(/*ev*/) {
+    handleScroll () {
       const target = document.querySelector("[index='" + this.index + "']");
-      const el = target.parentElement;
+      const el = target?.parentElement;
 
-      if (this.scrolling != -1) {
+      if (this.scrolling !== -1) {
         clearTimeout(this.scrolling);
       }
 
@@ -61,22 +65,26 @@ export default {
          * @type {Array}
          */
         try {
-          const visible = [
-            ...el.parentElement.querySelectorAll(el.nodeName)
-          ].find((sib) => {
-            return sib.getBoundingClientRect().left >= 0;
-          });
+          if (el?.parentElement) {
+            const visible = [
+              ...el.parentElement.querySelectorAll(el.nodeName)
+            ].find((sib) => {
+              return sib.getBoundingClientRect().left >= 0;
+            });
 
-          const elPosX = visible.getBoundingClientRect().x;
-          const prevPosX = visible.previousSibling.getBoundingClientRect().x;
+            const elPosX = visible?.getBoundingClientRect().x ?? 0;
+            const prevPosX = (visible?.previousSibling as HTMLElement)?.getBoundingClientRect().x;
 
-          if (elPosX > 0 && elPosX <= window.innerWidth / 2) {
-            visible.scrollIntoView({ behavior: "smooth" });
-            this.$emit("scrolled", visible.querySelector("img"));
-          } else if (prevPosX < 0 && prevPosX > -window.innerWidth / 2) {
-            const prevEl = visible.previousSibling;
-            prevEl.scrollIntoView({ behavior: "smooth" });
-            this.$emit("scrolled", prevEl.querySelector("img"));
+            if (elPosX > 0 && elPosX <= window.innerWidth / 2) {
+              // eslint-disable-next-line
+              // visible?.scrollIntoView({ behavior: "smooth" });
+              this.$emit("scrolled", visible?.querySelector("img"));
+            } else if (prevPosX < 0 && prevPosX > -window.innerWidth / 2) {
+              const prevEl = visible?.previousSibling;
+              // eslint-disable-next-line
+              // (prevEl as HTMLElement)?.scrollIntoView({ behavior: "smooth" });
+              this.$emit("scrolled", (prevEl as HTMLElement)?.querySelector("img"));
+            }
           }
         } catch (e) {
           console.log(e.message);
@@ -84,7 +92,7 @@ export default {
       }, 200);
     }
   }
-};
+});
 </script>
 
 <style scoped src="./styles.scss" lang="scss"></style>

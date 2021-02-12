@@ -1,5 +1,5 @@
 type TF = {(e: KeyboardEvent): void};
-// eslint-disable-next-line
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 type TWIN = any;/* window */
 export const listen = (el: TWIN, ev: string, f: TF) => {
   if (el.attachEvent) {

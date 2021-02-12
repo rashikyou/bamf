@@ -21,7 +21,8 @@ module.exports = {
     ],
     "arrow-parens": [2, "always"],
     "quotes": [0, "double"],
-    "semi": [1, "always"]
+    "semi": [1, "always"],
+    "no-unused-expressions": ["error", { "allowTernary": true }]
   },
   overrides: [
     {
