@@ -5,7 +5,12 @@ import Dropzone from "@/components/Dropzone/index.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Dropzone",
+    name: "Dropzone1",
+    component: Dropzone
+  },
+  {
+    path: "/reader",
+    name: "Dropzone2",
     component: Dropzone
   }
 ];
