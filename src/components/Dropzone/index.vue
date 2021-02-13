@@ -36,7 +36,7 @@
       @dragleave="onDragLeave"
       :class="{ active: dragging == true }"
     >
-      <image-elem v-if="src" :src="src" :classname="classname" />
+      <image-elem v-if="src" :src="src" :classname="classname" :total="total"/>
       <input
         type="file"
         v-if="!dropped"
@@ -71,6 +71,7 @@ export default defineComponent({
     return {
       dropped: false,
       dragging: false,
+      total: 0,
       src: [[0, '', '']] as SrcResult[],
       classname: "full_height"
       // classname:'full_width'
@@ -103,6 +104,9 @@ export default defineComponent({
       droppedFiles.forEach((file: File) => {
         loader.read(file, (evt: SrcResult[]) => {
           this.src = evt;
+          if (evt?.length) {
+            this.total = evt.length;
+          }
         });
       });
 

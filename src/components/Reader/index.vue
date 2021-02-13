@@ -8,6 +8,11 @@
       :classname="classname"
     >
     </carousel>
+    <div
+      v-if="total>0"
+      style="background-color: #ffffff; position: absolute; z-index: 10; top: 0px; left: 35px; padding: 5px; border-style: solid; border-color: gray; border-radius: 5px; ">
+      {{(index+1)}} / {{total}}
+    </div>
     <footer-element :src="src" @clicked="setIndex" :index="index">
     </footer-element>
     <toaster :message="toasterMessage" :time="toasterTime"></toaster>
@@ -22,7 +27,7 @@ import { listen } from "@/functions/listen";
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  props: ["src", "classname"],
+  props: ["src", "classname", "total"],
   data () {
     return {
       index: 0,
@@ -55,8 +60,14 @@ export default defineComponent({
     listen(window, "keyup", (e) => {
       let delta = 0;
       switch (e.keyCode) {
+        case 33:// 37 = page up
+          delta = -1;
+          break;
         case 37:// 37 = left arrow
           delta = -1;
+          break;
+        case 34:// 39 = page down
+          delta = 1;
           break;
         case 39:// 39 = right arrow
           delta = 1;

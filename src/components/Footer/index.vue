@@ -14,7 +14,7 @@
           :alt="image[1]"
           :class="{ active: index == image[0] }"
         >
-          <span>{{ image[0] }}</span>
+          <span>{{ image[0]+1 }}</span>
         </a>
       </li>
     </nav>
